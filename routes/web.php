@@ -26,6 +26,7 @@ Route::group(['namespace' => 'Incomes'], function () {
 
 Route::group(['namespace' => 'Outcomes'], function () {
     Route::resource('outcomes', 'OutcomeController');
+    Route::get('/getOutcomesDatatable','OutcomeController@getOutcomesDatatable')->name('outcomes.getOutcomesDatatable');
 });
 
 Route::group(['prefix' => 'journals','namespace' => 'Journals'], function () {

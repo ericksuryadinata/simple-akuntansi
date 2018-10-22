@@ -1,10 +1,10 @@
 @extends('dashboard.layout')
 
-@section('title', 'Income | ')
+@section('title', 'Pemasukkan | ')
 
 @section('breadcrumb')
 <li class="breadcrumb-item">Home</li>
-<li class="breadcrumb-item active">Income</li>
+<li class="breadcrumb-item active">Pemasukkan</li>
 @stop
 
 @section('content')

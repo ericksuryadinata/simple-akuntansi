@@ -41,7 +41,7 @@ class IncomeController extends Controller
     {
         Income::create($request->all());
 
-        redirect()->route('incomes.index')->with('message','Transaksi berhasil ditambahkan');
+        return redirect()->route('incomes.index')->with('message','Transaksi berhasil ditambahkan');
     }
 
     /**
@@ -92,6 +92,12 @@ class IncomeController extends Controller
     public function getIncomesDatatable(){
         $incomes = Income::latest();
         return Datatables::of($incomes)
+                ->editColumn('account_id',function($income){
+                    return $income->account->name;
+                })
+                ->editColumn('amount', function($income){
+                    return $income->price_for_humans;
+                })
                 ->editColumn('payment_method', function($income){
                     return ($income->payment_method === 'D') ? 'DEBIT' : 'KREDIT';
                 })

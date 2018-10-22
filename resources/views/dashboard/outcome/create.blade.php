@@ -1,19 +1,19 @@
 @extends('dashboard.layout')
 
-@section('title', 'Pemasukkan | ')
+@section('title', 'Pengeluaran | ')
 
 @section('breadcrumb')
 <li class="breadcrumb-item">Home</li>
-<li class="breadcrumb-item active">Pemasukkan</li>
+<li class="breadcrumb-item active">Pengeluaran</li>
 @stop
 
 @section('content')
 <div class="card card-accent-blue">
-    <div class="card-header">Tambah Pemasukkan</div>
+    <div class="card-header">Tambah Pengeluaran</div>
     <div class="card-body">
         <div class="row">
             <div class="col-md-12 col-sm-12">
-                <form method="post" action="{{route('incomes.store')}}">
+                <form method="post" action="{{route('outcomes.store')}}">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label>Tanggal Transaksi</label>

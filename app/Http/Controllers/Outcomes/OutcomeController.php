@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Outcomes;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Account;
+use App\Models\Outcome;
+use Yajra\Datatables\Datatables;
 
 class OutcomeController extends Controller
 {
@@ -24,7 +27,8 @@ class OutcomeController extends Controller
      */
     public function create()
     {
-        //
+        $accounts = Account::latest()->get();
+        return view('dashboard.outcome.create',compact('accounts'));
     }
 
     /**
@@ -35,7 +39,9 @@ class OutcomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Outcome::create($request->all());
+
+        return redirect()->route('outcomes.index')->with('message','Transaksi berhasil ditambahkan');
     }
 
     /**
@@ -81,5 +87,20 @@ class OutcomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getOutcomesDatatable(){
+        $outcomes = Outcome::latest();
+        return Datatables::of($outcomes)
+                ->editColumn('account_id',function($outcome){
+                    return $outcome->account->name;
+                })
+                ->editColumn('amount', function($outcome){
+                    return $outcome->price_for_humans;
+                })
+                ->editColumn('payment_method', function($outcome){
+                    return ($outcome->payment_method === 'D') ? 'DEBIT' : 'KREDIT';
+                })
+                ->make(true);
     }
 }
