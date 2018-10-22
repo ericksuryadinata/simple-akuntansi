@@ -29,8 +29,9 @@ Route::group(['namespace' => 'Outcomes'], function () {
     Route::get('/getOutcomesDatatable','OutcomeController@getOutcomesDatatable')->name('outcomes.getOutcomesDatatable');
 });
 
-Route::group(['prefix' => 'journals','namespace' => 'Journals'], function () {
-    Route::get('/', 'JournalController@index')->name('journals.index');
+Route::group(['namespace' => 'Journals'], function () {
+    Route::resource('journals', 'JournalController');
+    Route::get('/getJournalsDatatable','JournalController@getJournalsDatatable')->name('journals.getJournalsDatatable');
 });
 
 Route::group(['namespace' => 'Accounts'], function () {

@@ -26,7 +26,8 @@ class AccountController extends Controller
      */
     public function create()
     {
-        //
+        $accounts = Account::parent()->get();
+        return view('dashboard.account.create',compact('accounts'));
     }
 
     /**
@@ -85,8 +86,8 @@ class AccountController extends Controller
         //
     }
 
-    public function getAccountDatatables(){
-        $account = Account::latest();
+    public function getAccountsDatatable(){
+        $account = Account::parent()->latest();
         return Datatables::of($account)->make(true);
     }
 }

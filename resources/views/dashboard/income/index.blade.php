@@ -11,14 +11,9 @@
 <div class="card card-accent-blue">
     <div class="card-header">Pemasukkan</div>
     <div class="card-body">
-        @if (session()->has('success'))
-            <div class="alert alert-success">
-                {!!session('success')!!}
-            </div>
-        @endif
-        @if (session()->has('error'))
-            <div class="alert alert-danger">
-                {!!session('error')!!}
+        @if (session()->has('message'))
+            <div class="alert alert-primary">
+            {!!session('message')!!}
             </div>
         @endif
         <div class="col-md-12 col-sm-12">

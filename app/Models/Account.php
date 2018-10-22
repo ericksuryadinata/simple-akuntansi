@@ -17,4 +17,8 @@ class Account extends Model
     public function outcomes(){
         return $this->belongsTo(Income::class);
     }
+
+    public function scopeParent($query){
+        return $query->where('parent_id',NULL);
+    }
 }
