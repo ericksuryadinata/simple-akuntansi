@@ -10,6 +10,7 @@ Just Download this and then
 ``` 
 cd /path/to/your/html
 copy .env.example to .env then change to your server settings
+composer install
 php artisan key:generate
 php artisan migrate
 php artisan db:seed

@@ -1,26 +1,33 @@
 @extends('dashboard.layout')
 
-@section('title', 'Income | ')
+@section('title', 'Account | ')
 
 @section('breadcrumb')
 <li class="breadcrumb-item">Home</li>
-<li class="breadcrumb-item active">Rekening</li>
+<li class="breadcrumb-item active">Akun</li>
 @stop
 
 @section('content')
 <div class="card card-accent-blue">
     <div class="card-header">Akun</div>
     <div class="card-body">
-        <table class="table" id="accounts-table">
-            <thead>
-                <tr>
-                    <th>Nomor Akun</th>
-                    <th>Nama</th>
-                    <th>Normal Balance</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <div class="col-md-12 col-sm-12">
+            <a href="{{route('accounts.create')}}"><button class="btn btn-succcess"> Tambah Akun</button></a>
+        </div>
+        <div class="row mt-5">
+            <div class="col-sm-12 col-md-12">
+                <table class="table" id="accounts-table">
+                    <thead>
+                        <tr>
+                            <th>Nomor Akun</th>
+                            <th>Nama</th>
+                            <th>Normal Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 @stop

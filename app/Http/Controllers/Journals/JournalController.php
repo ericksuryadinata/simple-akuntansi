@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Journals;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Account;
+use App\Models\Journal;
+use Yajra\Datatables\Datatables;
 class JournalController extends Controller
 {
     /**
@@ -36,7 +38,28 @@ class JournalController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $request->validate([
+            'transact_date' => 'required',
+        ]);
+        $data = [];
+        $inside = [];
+
+        foreach($request->account_id as $key => $value){
+            $data[$key]["transact_date"] = $request->transact_date;
+            $data[$key]["account_id"] = $value;
+            $data[$key]["created_at"] = now();
+            $data[$key]["updated_at"] = now();
+        }
+        foreach($request->debt as $key => $value){
+            $data[$key]["debt"] = $value;
+        }
+        foreach($request->credit as $key => $value){
+            $data[$key]["credit"] = $value;
+        }
+        // dd($data);
+        Journal::insert($data);
+
+        return redirect()->route('journals.index')->with('message','berhasil menambahkan jurnal');
     }
 
     /**
@@ -82,5 +105,20 @@ class JournalController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getJournalsDatatable(){
+        $Journals = Journal::latest();
+        return Datatables::of($Journals)
+                ->editColumn('account_id',function($journals){
+                    return $journals->account->name;
+                })
+                ->editColumn('debt', function($journals){
+                    return $journals->debt_price_for_humans;
+                })
+                ->editColumn('credit', function($journals){
+                    return $journals->credit_price_for_humans;
+                })
+                ->make(true);
     }
 }

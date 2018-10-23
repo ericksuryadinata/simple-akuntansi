@@ -17,7 +17,7 @@
                     {{csrf_field()}}
                     <div class="form-group">
                         <label>Nomor Akun</label>
-                        <input name="account_number" class="form-control {{$errors->has('account_number') ? 'is-invalid' : ''}}" type="text" placeholder="Saldo" value="{{old('account_number')}}">
+                        <input name="account_number" class="form-control {{$errors->has('account_number') ? 'is-invalid' : ''}}" type="text" placeholder="Nomor Akun" value="{{old('account_number')}}">
                         @if ($errors->has('account_number'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('account_number') }}</strong>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label>Nama Akun</label>
-                        <input name="name" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" type="text" placeholder="Saldo" value="{{old('name')}}">
+                        <input name="name" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" type="text" placeholder="Nama Akun" value="{{old('name')}}">
                         @if ($errors->has('name'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('name') }}</strong>
@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <label>Parent</label>
                         <select name="parent_id" class="form-control {{$errors->has('parent_id') ? 'is-invalid' : ''}}">
-                            <option disabled {{old('parent_id') ? '' : 'selected'}}>Pilih Akun</option>
+                            <option disabled {{old('parent_id') ? '' : 'selected'}}>Induk Kelas</option>
 
                             @foreach($accounts as $account)
                             <option value="{{$account->id}}" {{old('parent_id') == $account->id ? 'selected' : ''}}>{{$account->account_number." - ".$account->name}}</option>

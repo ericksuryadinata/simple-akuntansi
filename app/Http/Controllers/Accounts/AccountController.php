@@ -38,7 +38,8 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Account::create($request->all());
+        return redirect()->route('accounts.index')->with('message','Akun berhasil dibuat :)');
     }
 
     /**
@@ -87,7 +88,7 @@ class AccountController extends Controller
     }
 
     public function getAccountsDatatable(){
-        $account = Account::parent()->latest();
+        $account = Account::orderBy('parent_id');
         return Datatables::of($account)->make(true);
     }
 }

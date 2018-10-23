@@ -32,7 +32,27 @@
                                     <option disabled {{old('account_id') ? '' : 'selected'}}>Pilih Akun</option>
 
                                     @foreach($accounts as $account)
-                                    <option value="{{$account->id}}" {{old('account_id') == $account->id ? 'selected' : ''}}>{{$account->name}}</option>
+                                    <option value="{{$account->id}}" {{old('account_id') == $account->id ? 'selected' : ''}}>{{$account->account_number." - ".$account->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group mr-5">
+                                <label class="mr-2">Debit</label>
+                                <input name="debt[]" class="form-control" type="text" placeholder="Debit">
+                            </div>
+                            <div class="form-group mr-5">
+                                <label class="mr-2">Kredit</label>
+                                <input name="credit[]" class="form-control" type="text" placeholder="Kredit">
+                            </div>
+                        </div>
+                        <div class="form-inline mt-2">
+                            <div class="form-group mr-5">
+                                <label class="mr-2">Akun</label>
+                                <select name="account_id[]" class="form-control {{$errors->has('account_id') ? 'is-invalid' : ''}}">
+                                    <option disabled {{old('account_id') ? '' : 'selected'}}>Pilih Akun</option>
+
+                                    @foreach($accounts as $account)
+                                    <option value="{{$account->id}}" {{old('account_id') == $account->id ? 'selected' : ''}}>{{$account->account_number." - ".$account->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -75,7 +95,7 @@ $(document).ready(function () {
                 let option = "";
                 $.each(response, function (i, v) {
                     $.each(v, function (index,value) {
-                        option += "<option value="+value.id+">"+value.name+"</option>";
+                        option += "<option value="+value.id+">"+value.account_number+" - "+value.name+"</option>";
                     });
                 });
                 let lastField = $("#reserved-form div:last");
