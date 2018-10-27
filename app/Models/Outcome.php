@@ -10,11 +10,13 @@ class Outcome extends Model
         'account_id', 'transact_date', 'amount', 'payment_method'
     ];
 
-    public function account(){
+    public function account()
+    {
         return $this->belongsTo(Account::class);
     }
 
-    public function getPriceForHumansAttribute(){
-        return "Rp. ".number_format($this->amount);
+    public function getPriceForHumansAttribute()
+    {
+        return 'Rp. ' . number_format($this->amount);
     }
 }
